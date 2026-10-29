@@ -99,7 +99,7 @@ Dois projetos independentes:
 ## Contato
 
 Pedro Koberstain
-pedrokoberstain2@gmail.com
+pedro.koberstain.dev@gmail.com
 
 ---
 
