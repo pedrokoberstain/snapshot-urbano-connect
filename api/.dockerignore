@@ -1,0 +1,13 @@
+target/
+node_modules/
+.git/
+.idea/
+.mvn/wrapper/maven-wrapper.jar
+*.iml
+deploy/backups/
+.env
+
+# Config de desenvolvimento (banco local, senha de dev). O container roda com
+# SPRING_PROFILES_ACTIVE=prod e nunca le este arquivo, mas sem esta linha ele
+# era empacotado dentro do JAR de producao, levando junto credenciais de dev.
+src/main/resources/application-dev.properties

@@ -1,0 +1,480 @@
+@import "tailwindcss";
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.4s ease-out forwards; }
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(28px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+.animate-result       { animation: slideUpFade 0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-result-delay { animation: slideUpFade 0.55s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+
+@keyframes stepForward {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes stepBack {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.step-forward { animation: stepForward 0.32s cubic-bezier(0.16,1,0.3,1) both; }
+.step-back    { animation: stepBack    0.32s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* ════════════════════════════════════════════════════════
+   EDITOR TIPTAP — ÁREA DE EDIÇÃO (tema escuro/admin)
+════════════════════════════════════════════════════════ */
+
+.artigo-editor p            { margin: 0 0 1rem 0; line-height: 1.85; }
+.artigo-editor h2           { font-size: 1.2rem; font-weight: 900; color: #e5e7eb; margin: 2rem 0 0.75rem; padding-left: 0.75rem; border-left: 4px solid #16a34a; }
+.artigo-editor h3           { font-size: 1.05rem; font-weight: 800; color: #d1d5db; margin: 1.5rem 0 0.5rem; }
+.artigo-editor ul           { list-style: disc; padding-left: 1.5rem; margin: 0 0 1rem; line-height: 1.9; color: #9ca3af; }
+.artigo-editor ol           { list-style: decimal; padding-left: 1.5rem; margin: 0 0 1rem; line-height: 1.9; color: #9ca3af; }
+.artigo-editor strong       { color: #f9fafb; font-weight: 700; }
+.artigo-editor em           { font-style: italic; color: #d1d5db; }
+.artigo-editor a            { color: #4ade80; text-decoration: underline; }
+.artigo-editor .is-editor-empty::before { color: #4b5563; content: attr(data-placeholder); float: left; height: 0; pointer-events: none; }
+.artigo-editor img              { max-width: 100%; border-radius: 0.75rem; margin: 1rem 0; display: block; border: 2px solid #1f2937; }
+
+/* ════════════════════════════════════════════════════════
+   ARTIGO PÚBLICO — CONTEÚDO (tema claro/portal)
+════════════════════════════════════════════════════════ */
+
+.artigo-publico p           { margin: 0 0 1.25rem 0; line-height: 1.9; color: #374151; }
+.artigo-publico h2          { font-size: 1.35rem; font-weight: 900; color: #111827; margin: 2.5rem 0 0.75rem; padding-left: 0.75rem; border-left: 4px solid #16a34a; }
+.artigo-publico h3          { font-size: 1.15rem; font-weight: 800; color: #1f2937; margin: 1.75rem 0 0.5rem; }
+.artigo-publico ul          { list-style: disc; padding-left: 1.5rem; margin: 0 0 1.25rem; line-height: 1.9; color: #4b5563; }
+.artigo-publico ol          { list-style: decimal; padding-left: 1.5rem; margin: 0 0 1.25rem; line-height: 1.9; color: #4b5563; }
+.artigo-publico strong      { font-weight: 700; color: #111827; }
+.artigo-publico em          { font-style: italic; color: #374151; }
+.artigo-publico a           { color: #16a34a; text-decoration: underline; }
+.artigo-publico img         { max-width: 100%; border-radius: 0.75rem; margin: 1.5rem 0; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+/* ════════════════════════════════════════════════════════
+   BLOCOS ESPECIAIS — compartilhados entre editor e portal
+════════════════════════════════════════════════════════ */
+
+/* ── PULL QUOTE ── */
+.artigo-pull-quote {
+  background: linear-gradient(135deg, #1a2b3c 0%, #2d3436 100%);
+  color: white;
+  border-radius: 14px;
+  padding: 30px 36px 30px 60px;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.65;
+  position: relative;
+  border-left: 5px solid #16a34a;
+}
+.artigo-pull-quote::before {
+  content: '\201C';
+  font-size: 96px;
+  line-height: 0;
+  position: absolute;
+  top: 52px;
+  left: 20px;
+  opacity: 0.15;
+  font-family: Georgia, serif;
+  color: white;
+}
+.artigo-pull-quote p        { margin: 0; color: white !important; font-style: italic; }
+.artigo-pull-quote strong   { color: #86efac !important; }
+
+/* ── DATA BOX ── */
+.artigo-data-box {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-left: 5px solid #16a34a;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 1.75rem 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.artigo-data-box p:first-child  { font-size: 11px !important; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #16a34a !important; margin-bottom: 12px !important; }
+.artigo-data-box p              { color: #374151 !important; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.artigo-data-box ul             { margin: 0; color: #374151; line-height: 1.9; font-size: 0.9rem; padding-left: 1.25rem; }
+.artigo-data-box li             { margin-bottom: 0.25rem; }
+
+/* versão escura no editor */
+.artigo-editor .artigo-data-box                 { background: #0d1f0d; border-color: #166534; }
+.artigo-editor .artigo-data-box p               { color: #86efac !important; }
+.artigo-editor .artigo-data-box p:first-child   { color: #4ade80 !important; }
+.artigo-editor .artigo-data-box ul              { color: #86efac; }
+
+/* ── ALERT STRIP ── */
+.artigo-alert-strip {
+  background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 1.75rem 0;
+  font-weight: 600;
+  line-height: 1.65;
+}
+.artigo-alert-strip p   { margin: 0; color: white !important; }
+.artigo-alert-strip strong { color: #fecaca !important; }
+
+/* ── CONCLUSÃO ── */
+.artigo-conclusion {
+  background: #0f172a;
+  color: white;
+  border-radius: 14px;
+  padding: 30px 34px;
+  margin: 2rem 0;
+  border-top: 4px solid #16a34a;
+}
+.artigo-conclusion p    { font-size: 0.92rem; line-height: 1.85; color: rgba(255,255,255,0.85) !important; margin: 0 0 0.75rem; }
+.artigo-conclusion p:last-child { margin-bottom: 0; }
+.artigo-conclusion h2,
+.artigo-conclusion h3   { color: white !important; border-left-color: #4ade80 !important; }
+.artigo-conclusion strong { color: #86efac !important; }
+
+/* ── INFO BOX ── */
+.artigo-info-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-left: 5px solid #3b82f6;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 1.75rem 0;
+}
+.artigo-info-box p:first-child  { font-size: 11px !important; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #2563eb !important; margin-bottom: 12px !important; }
+.artigo-info-box p              { color: #1e3a8a !important; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.artigo-info-box ul             { color: #1e40af; font-size: 0.9rem; line-height: 1.9; padding-left: 1.25rem; }
+
+/* versão escura no editor */
+.artigo-editor .artigo-info-box               { background: #0c1a2e; border-color: #1e3a5f; }
+.artigo-editor .artigo-info-box p             { color: #93c5fd !important; }
+.artigo-editor .artigo-info-box p:first-child { color: #60a5fa !important; }
+.artigo-editor .artigo-info-box ul            { color: #93c5fd; }
+
+/* ── ALERTA no editor (fundo escuro legível) ── */
+.artigo-editor .artigo-alert-strip { background: linear-gradient(90deg, #7f1d1d 0%, #991b1b 100%); }
+
+/* ── CONCLUSÃO no editor ── */
+.artigo-editor .artigo-conclusion { background: #0a0f1a; border-top-color: #4ade80; }
+
+/* ════════════════════════════════════════════════════════
+   TICKER / MARQUEE ANIMATION (home page)
+════════════════════════════════════════════════════════ */
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+/* ── ARTIGO PÚBLICO — estilos ricos para conteúdo importado ── */
+.artigo-publico { font-size: 16px; line-height: 1.8; color: #2d3436; }
+
+.artigo-publico h1 { font-size: 2rem; font-weight: 900; color: #1a2b3c; margin: 2rem 0 1rem; }
+.artigo-publico h2 { font-size: 1.4rem; font-weight: 800; color: #1a2b3c; margin: 2rem 0 0.75rem; padding-left: 14px; border-left: 4px solid #22c55e; }
+.artigo-publico h3 { font-size: 1.15rem; font-weight: 700; color: #1a2b3c; margin: 1.5rem 0 0.5rem; }
+.artigo-publico p  { margin-bottom: 1.2rem; }
+.artigo-publico strong { color: #1a2b3c; }
+.artigo-publico ul { padding-left: 1.5rem; margin-bottom: 1.2rem; }
+.artigo-publico ul li { margin-bottom: 0.4rem; }
+.artigo-publico ol { padding-left: 1.5rem; margin-bottom: 1.2rem; }
+.artigo-publico ol li { margin-bottom: 0.4rem; }
+
+/* Pull quote — bloco de citação de destaque */
+.artigo-publico .pull-quote {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+  color: #fff; border-radius: 12px; padding: 28px 32px 28px 52px;
+  margin: 2rem 0; font-size: 1.1rem; font-style: italic; font-weight: 600;
+  line-height: 1.6; position: relative; border-left: 5px solid #22c55e;
+}
+.artigo-publico .pull-quote::before {
+  content: '\201C'; font-size: 80px; line-height: 0;
+  position: absolute; top: 40px; left: 14px;
+  color: #22c55e; opacity: 0.5; font-family: Georgia, serif;
+}
+
+/* Data box — caixa de dados/lista */
+.artigo-publico .data-box {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-left: 5px solid #22c55e; border-radius: 8px;
+  padding: 20px 24px; margin: 1.75rem 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.artigo-publico .data-box .db-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #22c55e; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.artigo-publico .data-box ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.9; color: #444; }
+
+/* Info card genérico */
+.artigo-publico .info-card,
+.artigo-publico .sb-card {
+  background: #f8fafc; border-radius: 10px; padding: 20px 24px;
+  border-left: 4px solid #22c55e; margin: 1.5rem 0;
+}
+
+/* Ranking table */
+.artigo-publico .rank-table {
+  background: #fff; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08); margin: 1.75rem 0;
+}
+.artigo-publico .rank-header {
+  background: #0f172a; color: #fff; padding: 14px 20px;
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+}
+.artigo-publico .rank-row {
+  display: flex; align-items: center; padding: 14px 20px;
+  border-bottom: 1px solid #f5f5f5; gap: 14px;
+}
+.artigo-publico .rank-row:last-child { border-bottom: none; }
+.artigo-publico .rank-row:hover { background: #f0fdf4; }
+.artigo-publico .rank-pos { font-size: 20px; font-weight: 900; color: #d1d5db; min-width: 28px; }
+.artigo-publico .rank-pos.top { color: #22c55e; }
+.artigo-publico .rc-name { font-size: 14px; font-weight: 800; color: #1a2b3c; }
+.artigo-publico .rc-state { font-size: 11px; color: #9ca3af; }
+.artigo-publico .rank-bar {
+  height: 8px; border-radius: 4px;
+  background: linear-gradient(90deg, #22c55e, #86efac);
+  margin-bottom: 3px;
+}
+
+/* Terra card / stat card */
+.artigo-publico .terra-card,
+.artigo-publico .stat-card {
+  background: #fff; border-radius: 10px; padding: 18px 20px;
+  border-top: 4px solid #22c55e; box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  margin: 0.5rem;
+}
+
+/* Grid de cards */
+.artigo-publico .cards-grid,
+.artigo-publico .data-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin: 1.75rem 0;
+}
+
+/* Tabelas */
+.artigo-publico table {
+  width: 100%; border-collapse: collapse; margin: 1.75rem 0;
+  border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.artigo-publico th {
+  background: #0f172a; color: #fff; padding: 12px 16px;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 1px; text-align: left;
+}
+.artigo-publico td { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+.artigo-publico tr:last-child td { border-bottom: none; }
+.artigo-publico tr:hover td { background: #f0fdf4; }
+
+/* ── Blocos uniformes do conteúdo importado (noticiário limpo) ── */
+
+/* Parágrafo de abertura (lead) */
+.artigo-publico > p:first-of-type { font-size: 1.12rem; line-height: 1.85; color: #1f2937; font-weight: 500; }
+
+/* Faixa de estatísticas uniforme */
+.artigo-publico .uc-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px; margin: 2rem 0;
+}
+.artigo-publico .uc-stat {
+  background: #f8fafc; border: 1px solid #eef2f7; border-top: 4px solid #22c55e;
+  border-radius: 10px; padding: 18px 16px; text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.artigo-publico .uc-stat-v { display: block; font-size: 1.5rem; font-weight: 900; color: #16a34a; line-height: 1.1; }
+.artigo-publico .uc-stat-l { display: block; margin-top: 6px; font-size: 0.78rem; color: #6b7280; font-weight: 600; line-height: 1.35; }
+
+/* Fluxo (processo) */
+.artigo-publico .uc-flow {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin: 1.75rem 0; padding: 16px; background: #f8fafc; border-radius: 10px;
+}
+.artigo-publico .uc-flow span {
+  background: #0f172a; color: #fff; font-weight: 700; font-size: 0.82rem;
+  padding: 6px 13px; border-radius: 999px; white-space: nowrap;
+}
+.artigo-publico .uc-flow i { color: #22c55e; font-style: normal; font-weight: 800; }
+
+/* Blockquote limpo */
+.artigo-publico blockquote {
+  margin: 1.75rem 0; padding: 14px 20px; border-left: 4px solid #22c55e;
+  background: #f0fdf4; color: #14532d; font-style: italic; border-radius: 0 8px 8px 0;
+}
+
+/* ════════════════════════════════════════════════════════
+   COMPONENTES RICOS DO CONTEÚDO IMPORTADO
+   Os artigos do André trazem gráficos e blocos estruturados que antes
+   viravam texto solto. Estes três cobrem as famílias que se repetem:
+   barra proporcional, etapas numeradas e card com métricas.
+════════════════════════════════════════════════════════ */
+
+/* ── BARRA PROPORCIONAL — rankings, scores, retorno por ativo ── */
+.artigo-publico .uc-barras {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+  padding: 20px 24px; margin: 1.75rem 0; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.artigo-publico .uc-barras-t {
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;
+  color: #16a34a; margin-bottom: 16px;
+}
+.artigo-publico .uc-barra {
+  display: grid; grid-template-columns: minmax(90px, 1.6fr) 3fr auto;
+  align-items: center; gap: 12px; padding: 7px 0;
+}
+.artigo-publico .uc-barra + .uc-barra { border-top: 1px solid #f3f4f6; }
+.artigo-publico .uc-barra-l { font-size: .84rem; color: #374151; font-weight: 600; line-height: 1.35; }
+.artigo-publico .uc-barra-t {
+  background: #f1f5f9; border-radius: 999px; height: 10px; overflow: hidden; min-width: 60px;
+}
+.artigo-publico .uc-barra-t > span {
+  display: block; height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, #16a34a, #4ade80);
+}
+.artigo-publico .uc-barra-v {
+  font-size: .9rem; font-weight: 800; color: #16a34a; text-align: right;
+  white-space: nowrap; min-width: 52px;
+}
+
+/* ── ETAPAS NUMERADAS — escada de maturidade, roteiros, fases ── */
+.artigo-publico .uc-etapas { margin: 1.75rem 0; }
+.artigo-publico .uc-etapas-t {
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;
+  color: #16a34a; margin-bottom: 14px;
+}
+.artigo-publico .uc-etapa {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: #fff; border: 1px solid #e5e7eb; border-left: 4px solid #22c55e;
+  border-radius: 10px; padding: 14px 18px; margin-bottom: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.04);
+}
+.artigo-publico .uc-etapa-n {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+  background: #0f172a; color: #fff; font-weight: 900; font-size: .95rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.artigo-publico .uc-etapa-c { flex: 1; min-width: 0; }
+.artigo-publico .uc-etapa-t { font-weight: 800; color: #111827; font-size: .95rem; margin-bottom: 3px; }
+.artigo-publico .uc-etapa-d { font-size: .85rem; color: #4b5563; line-height: 1.6; }
+.artigo-publico .uc-etapa-tag {
+  flex-shrink: 0; align-self: center; font-size: .7rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .5px; color: #16a34a;
+  background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 999px; padding: 4px 10px;
+}
+
+/* ── CARD COM MÉTRICAS — comparativos, linhas de crédito, categorias ── */
+.artigo-publico .uc-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px; margin: 1.75rem 0;
+}
+.artigo-publico .uc-card {
+  background: #fff; border: 1px solid #e5e7eb; border-top: 4px solid #22c55e;
+  border-radius: 12px; padding: 18px 20px; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.artigo-publico .uc-card-t { font-weight: 800; color: #111827; font-size: 1rem; line-height: 1.3; }
+.artigo-publico .uc-card-s {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: 1px;
+  color: #9ca3af; font-weight: 700; margin: 4px 0 12px;
+}
+.artigo-publico .uc-card p  { font-size: .87rem; color: #4b5563; margin-bottom: .6rem; }
+.artigo-publico .uc-card ul { font-size: .87rem; color: #4b5563; padding-left: 1.1rem; margin-bottom: .6rem; }
+.artigo-publico .uc-card li { margin-bottom: .3rem; }
+.artigo-publico .uc-card-m {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: 8px; margin: 12px 0 10px;
+}
+.artigo-publico .uc-metrica {
+  background: #f8fafc; border: 1px solid #eef2f7; border-radius: 8px;
+  padding: 9px 8px; text-align: center;
+}
+.artigo-publico .uc-metrica-l {
+  display: block; font-size: .6rem; text-transform: uppercase; letter-spacing: .5px;
+  color: #9ca3af; font-weight: 700; line-height: 1.3;
+}
+.artigo-publico .uc-metrica-v {
+  display: block; font-size: .92rem; font-weight: 800; color: #111827; margin-top: 3px;
+}
+.artigo-publico .uc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.artigo-publico .uc-tag {
+  font-size: .68rem; font-weight: 700; color: #15803d;
+  background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 999px; padding: 3px 9px;
+}
+
+/* Nas telas estreitas a barra vira duas linhas em vez de espremer o rótulo. */
+@media (max-width: 560px) {
+  .artigo-publico .uc-barra { grid-template-columns: 1fr auto; }
+  .artigo-publico .uc-barra-t { grid-column: 1 / -1; }
+  .artigo-publico .uc-etapa { flex-wrap: wrap; }
+}
+
+/* ════════════════════════════════════════════════════════
+   BLOCOS DE FUNDO ESCURO — legibilidade de TODO texto interno
+
+   Os blocos escuros cobriam só <p> e <strong>. Uma citação escrita como
+   <p><strong><em>texto</em></strong></p> — que é como o editor gera — caía
+   na regra `.artigo-publico em { color:#374151 }`: cinza escuro sobre fundo
+   escuro. A regra do elemento interno vence a cor herdada do bloco, então
+   cada tag inline precisa ser dita explicitamente.
+════════════════════════════════════════════════════════ */
+
+.artigo-pull-quote em,
+.artigo-pull-quote i,
+.artigo-pull-quote li,
+.artigo-pull-quote span,
+.artigo-publico .pull-quote,
+.artigo-publico .pull-quote p,
+.artigo-publico .pull-quote em,
+.artigo-publico .pull-quote i,
+.artigo-publico .pull-quote li,
+.artigo-publico .pull-quote span,
+.artigo-alert-strip em,
+.artigo-alert-strip i,
+.artigo-alert-strip li,
+.artigo-alert-strip span,
+.artigo-conclusion em,
+.artigo-conclusion i,
+.artigo-conclusion li,
+.artigo-conclusion span {
+  color: #fff !important;
+}
+
+/* O destaque dentro da citação continua verde-claro, inclusive aninhado. */
+.artigo-pull-quote strong em,
+.artigo-pull-quote em strong,
+.artigo-publico .pull-quote strong,
+.artigo-publico .pull-quote strong em,
+.artigo-publico .pull-quote em strong,
+.artigo-conclusion strong em,
+.artigo-conclusion em strong {
+  color: #86efac !important;
+}
+
+/* Alerta usa vermelho-claro no destaque, para não trocar o código de cor. */
+.artigo-alert-strip strong em,
+.artigo-alert-strip em strong {
+  color: #fecaca !important;
+}
+
+/* Link dentro de bloco escuro: o verde padrão do portal some no fundo. */
+.artigo-pull-quote a,
+.artigo-publico .pull-quote a,
+.artigo-alert-strip a,
+.artigo-conclusion a {
+  color: #86efac !important;
+  text-decoration: underline;
+}
+
+/* A citação importada não tinha nenhuma regra de filho — herda o corpo agora. */
+.artigo-publico .pull-quote p { margin: 0 0 0.75rem; }
+.artigo-publico .pull-quote p:last-child { margin-bottom: 0; }
+
+/* Títulos dentro de citação e alerta: a conclusão já tinha regra própria,
+   estes dois não — e herdavam o azul-escuro de .artigo-publico h2/h3. */
+.artigo-pull-quote h2, .artigo-pull-quote h3, .artigo-pull-quote h4,
+.artigo-publico .pull-quote h2, .artigo-publico .pull-quote h3, .artigo-publico .pull-quote h4,
+.artigo-alert-strip h2, .artigo-alert-strip h3, .artigo-alert-strip h4 {
+  color: #fff !important;
+  border-left-color: #4ade80 !important;
+}

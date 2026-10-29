@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+build/
+target/
+.env
+.env.local
+.env.production
+*.log
+hs_err_pid*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+.gradle/

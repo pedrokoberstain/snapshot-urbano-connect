@@ -1,0 +1,36 @@
+### Cadastrar um Imóvel URBANO
+POST http://localhost:8080/imoveis
+Content-Type: application/json
+
+{
+  "titulo": "Casa alto padrão no Centro",
+  "cidade": "Tangará da Serra",
+  "bairro": "Centro",
+  "tipo": "URBANO",
+  "preco": 450000.00,
+  "areaTotal": 120.5,
+  "detalhes": {
+    "quartos": 3,
+    "banheiros": 2,
+    "iptu": 1500,
+    "padrao": "alto"
+  }
+}
+
+### Cadastrar um Imóvel RURAL (Fazenda/Chácara)
+POST http://localhost:8080/imoveis
+Content-Type: application/json
+
+{
+  "titulo": "Chácara Recanto Feliz",
+  "cidade": "Tangará da Serra",
+  "bairro": null,
+  "tipo": "RURAL",
+  "preco": 800000.00,
+  "areaTotal": 50000.0,
+  "detalhes": {
+    "distancia_asfalto_km": 15,
+    "aptidao": "Pecuária e Lazer",
+    "possui_represa": true
+  }
+}

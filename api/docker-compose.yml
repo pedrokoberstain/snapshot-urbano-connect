@@ -1,0 +1,68 @@
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # Sem "ports": o banco NÃO fica exposto na internet.
+    # Só a rede interna do compose (o app) enxerga o Postgres.
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_HOST: db
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
+      FRONTEND_URL: ${FRONTEND_URL}
+      MERCADO_PAGO_TOKEN: ${MERCADO_PAGO_TOKEN}
+      MP_WEBHOOK_SECRET: ${MP_WEBHOOK_SECRET}
+      ALPHA_VANTAGE_KEY: ${ALPHA_VANTAGE_KEY}
+      BRAPI_TOKEN: ${BRAPI_TOKEN}
+      UC_DOCUMENTOS_DIRETORIO: /var/uc/documentos
+    volumes:
+      # Comprovantes de residência (conta de luz) enviados pelos moradores.
+      # Volume próprio, e NÃO montado no Caddy: o documento tem nome, endereço
+      # e às vezes CPF, e só sai por endpoint autenticado.
+      # Fora do backup de propósito — o arquivo é apagado após a análise, e
+      # copiá-lo para o backup anularia essa exclusão.
+      - documentos:/var/uc/documentos
+    # Sem "ports": quem publica pra internet é o Caddy (proxy reverso).
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./media:/srv/media:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:
+  documentos:

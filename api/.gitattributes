@@ -1,0 +1,8 @@
+/mvnw text eol=lf
+*.cmd text eol=crlf
+
+# Scripts de shell SEMPRE com LF, mesmo quando o checkout acontece no Windows.
+# Um .sh com CRLF quebra no Linux: o \r entra no nome do interpretador e o
+# shell falha com "bad interpreter". Vale para o deploy/backup.sh, que roda
+# por cron na VPS.
+*.sh text eol=lf

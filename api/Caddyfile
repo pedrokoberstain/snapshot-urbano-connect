@@ -1,0 +1,20 @@
+# Troque "api.seudominio.com" pelo domínio/subdomínio real da API.
+# O Caddy emite e renova o certificado HTTPS (Let's Encrypt) sozinho,
+# desde que o DNS desse nome já aponte para o IP da VPS e as portas 80/443
+# estejam abertas no firewall.
+api.urbanoconnect.com.br {
+    encode gzip
+
+    # Arquivos estáticos (logos, imagens de notícias) em /media/*
+    handle_path /media/* {
+        root * /srv/media
+        file_server
+        header Cache-Control "public, max-age=86400"
+        header Access-Control-Allow-Origin "*"
+    }
+
+    # Todo o resto vai para a API
+    handle {
+        reverse_proxy app:8080
+    }
+}
